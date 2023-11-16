@@ -1,9 +1,17 @@
 
+import java.lang.Runnable;
+
+import java.util.HashMap;
+
 public class CLI {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	static HashMap<String, Runnable> probDict = new HashMap<>();
 
+	public static void main(String[] args) {
+
+		while (true) {
+
+		}
 	}
 
 }
