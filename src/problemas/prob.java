@@ -3,9 +3,13 @@ package problemas;
 import pio.Msg;
 
 public class prob {
+	private static Msg msg = Msg.getInstance();
 	
 	public static void problema1(){
+<<<<<<< HEAD
+=======
 		Msg msg = Msg.getInstance();
+>>>>>>> 2e92fec2b44599837043bdc887c961823d01b659
 		
 		System.out.println("Algoritmo que determina qué paquete se puede comprar una persona con el dinero que recibirá en diciembre");
 		System.out.println("*********************************************************************************************************");
@@ -38,12 +42,38 @@ public class prob {
 
         System.out.println("");
     }
+	//****************************************Problema2*****************************************************
 	public static void problema2() {
-		Msg msg = new Msg();
+		
+		int n;
 		
 		System.out.println("Algoritmo que realiza la función exponencial eˣ= 1 + x/1! + x²/2! + x³/3! +...");
 		System.out.println("*********************************************************************************************************");
 		
+<<<<<<< HEAD
+		double x = msg.getDoubleFromInput("Ingrese el valor de (x): ");
+	        
+		while (true) {
+	    n = msg.getIntFromInput("Ingrese la cantidad de términos a calcular (n): ");
+	    
+	    if (n >= 1) {
+            break; 
+        } 
+	    else {
+            System.out.println("Cantidad de términos '"+n+"' NO VALIDA. Inténtalo de nuevo.");
+        }
+        }
+
+        double sm = 1, factorial = 1;
+
+        for (int i = 1; i <= n; i++) {
+        factorial *= i;
+        sm += Math.pow(x, i) / factorial;
+    }
+
+        System.out.println("Resultado: " + sm);
+		
+=======
 		double x = msg.getDoubleFromInput("Ingrese el valor de x: ");
 		int n = msg.getIntFromInput("Ingrese la cantidad de términos a calcular (n): ");
 
@@ -55,11 +85,14 @@ public class prob {
         }
 
         System.out.println("e^" + x + " con " + n + " términos = " + sum);
+>>>>>>> 2e92fec2b44599837043bdc887c961823d01b659
 	}
-
-    public static void problema3()
-    {
-        Msg msg = Msg.getInstance();
-    }
-
+	//****************************************Problema3*****************************************************
+	public static void problema3() {
+		
+		System.out.println("Algoritmo que calcula el seno de un ángulo *Sen x = (x-x³/3! + x⁵/5! - x⁷/7! + ...)* ");
+		System.out.println("*********************************************************************************************************");
+		
+		double x = msg.getDoubleFromInput("Ingrese el valor de x (en radianes)");
+	}
 }
