@@ -5,13 +5,13 @@ import pio.Msg;
 public class prob {
 
     public static void problema1() {
-        Msg msg = new Msg();
+        Msg msg = Msg.getInstance();
 
         System.out.println(
-                "Algoritmo que determina qué paquete se puede comprar una persona con el dinero que recibirá en diciembre");
+                "\nAlgoritmo que determina qué paquete se puede comprar una persona con el dinero que recibirá en diciembre");
         System.out.println(
                 "*********************************************************************************************************");
-        double aguinaldo = msg.getDoubleFromInput("Ingrese el monto del aguinaldo en diciembre: ");
+        double aguinaldo = msg.getDoubleFromInput("Ingrese el monto del aguinaldo en diciembre");
 
         String paquete;
         String[] productosElegidos = new String[5]; //
@@ -39,6 +39,8 @@ public class prob {
             System.out.println(producto);
 
         }
+
+        System.out.println("");
     }
 
 }

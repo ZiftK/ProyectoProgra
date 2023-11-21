@@ -1,7 +1,10 @@
 
 import java.util.HashMap;
+import java.util.TreeSet;
 
 import pio.Msg;
+
+import problemas.prob;
 
 public class CLI {
 
@@ -16,6 +19,7 @@ public class CLI {
 
 		// declaramos variable para almacenar input
 		String input;
+
 		// declaramos variable para mantener el ciclo
 		next = true;
 
@@ -28,28 +32,29 @@ public class CLI {
 		do {
 
 			// pedimos entrada
-			input = msg.getStringFromInput("");
+			input = msg.getStringFromInput("").
+			replaceAll(" ","").
+			toLowerCase();
 
 			// ejecutamos
 			execute(input);
 
 		} while (next);
 
+		msg.finalHeader();
+
 	}
 
 	public void help() {
 
-		msg.pDownH("\nComandos", '-');
+		msg.pDownH("\nComandos", '*',2);
 
-		System.out.println("");
-
-		for (String name : probDict.keySet()) {
-			System.out.println("");
+		for (String name : new TreeSet<>(probDict.keySet())) {
 			System.out.printf(
-					"%s : %s\n", name, probDict.get(name));
+					"* **[%s]** %s\n", name, probDict.get(name));
+					
+			System.out.println("");
 		}
-
-		System.out.println("");
 	}
 
 	public void leave() {
@@ -66,7 +71,7 @@ public class CLI {
 
 		} catch (NullPointerException e) {
 			// imprimimos error
-			msg.Error("Comando desconocido");
+			msg.Error("Comando desconocido. Escribe '?' para obtener ayuda.");
 		} finally {
 			// quitamos el nivel de comando
 			msg.DownLevel();
@@ -76,17 +81,38 @@ public class CLI {
 
 	static void LoadCommands() {
 
-		probDict.put(
-				"help",
-				new Command(new CLI()::help, "Imprime los comandos y su descripcion"));
+		// comando de ayuda
+		Command ch = new Command(new CLI()::help, "Imprime los comandos y su descripcion");
+		// comando de salida
+		Command cl = new Command(new CLI()::leave, "Termina la ejecucion");
+		// comando de problema 1
+		Command p1 = new Command(prob::problema1, "Ejecuta el algoritmo que determina que paquete se "
+						+String.format("puede comprar una persona con el dinero que recibira en diciembre ![ Problema 1 ]!"));
+		
+		// claves para comando de ayuda
+		String hk = "help,?";
+		// claves para comando de salida
+		String lk = "leave,quit,q,exit";
+		// claves para comando de problema 1
+		String p1k = "compag,p1";
 
-		probDict.put(
-				"?",
-				new Command(new CLI()::help, "Imprime los comandos y su descripcion"));
+		// asignación de comandos de ayuda
+		for (String key : hk.split(","))
+		{
+			probDict.put(key, ch);
+		}
 
-		probDict.put(
-				"leave",
-				new Command(new CLI()::leave, "Termina la ejecucón"));
+		// asignación de comandos de salida
+		for (String key : lk.split(","))
+		{
+			probDict.put(key, cl);
+		}
+
+		// asignación de comandos de problema 1
+		for (String key : p1k.split(","))
+		{
+			probDict.put(key, p1);
+		}
 	}
 
 }
