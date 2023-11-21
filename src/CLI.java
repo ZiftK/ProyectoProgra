@@ -88,6 +88,9 @@ public class CLI {
 		// comando de problema 1
 		Command p1 = new Command(prob::problema1, "Ejecuta el algoritmo que determina que paquete se "
 						+String.format("puede comprar una persona con el dinero que recibira en diciembre ![ Problema 1 ]!"));
+
+		Command p3 = new Command(prob::problema3, 
+		"Algoritmo que calcula el seno de un ángulo *Sen x = (x-x^3/3! + x^5/5! - x^7/7! + ...)* ![Problema 3]!");
 		
 		// claves para comando de ayuda
 		String hk = "help,?";
@@ -95,6 +98,9 @@ public class CLI {
 		String lk = "leave,quit,q,exit";
 		// claves para comando de problema 1
 		String p1k = "compag,p1";
+
+		// claves para comando de problema 3
+		String p3k = "sin,p3";
 
 		// asignación de comandos de ayuda
 		for (String key : hk.split(","))

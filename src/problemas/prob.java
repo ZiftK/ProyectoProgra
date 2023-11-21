@@ -50,18 +50,16 @@ public class prob {
 		System.out.println("Algoritmo que realiza la función exponencial eˣ= 1 + x/1! + x²/2! + x³/3! +...");
 		System.out.println("*********************************************************************************************************");
 		
-<<<<<<< HEAD
 		double x = msg.getDoubleFromInput("Ingrese el valor de (x): ");
-	        
 		while (true) {
-	    n = msg.getIntFromInput("Ingrese la cantidad de términos a calcular (n): ");
-	    
-	    if (n >= 1) {
-            break; 
-        } 
-	    else {
-            System.out.println("Cantidad de términos '"+n+"' NO VALIDA. Inténtalo de nuevo.");
-        }
+            n = msg.getIntFromInput("Ingrese la cantidad de términos a calcular (n): ");
+            
+            if (n >= 1) {
+                break; 
+            } 
+            else {
+                System.out.println("Cantidad de términos '"+n+"' NO VALIDA. Inténtalo de nuevo.");
+            }
         }
 
         double sm = 1, factorial = 1;
@@ -73,26 +71,28 @@ public class prob {
 
         System.out.println("Resultado: " + sm);
 		
-=======
-		double x = msg.getDoubleFromInput("Ingrese el valor de x: ");
-		int n = msg.getIntFromInput("Ingrese la cantidad de términos a calcular (n): ");
-
-	        double sum = 1.0, term = 1.0; // (x^0 / 0!)
-
-        for (int i = 1; i <= n; i++) {
-            term *= x / i;
-            sum += term;
-        }
-
-        System.out.println("e^" + x + " con " + n + " términos = " + sum);
->>>>>>> 2e92fec2b44599837043bdc887c961823d01b659
 	}
 	//****************************************Problema3*****************************************************
 	public static void problema3() {
 		
-		System.out.println("Algoritmo que calcula el seno de un ángulo *Sen x = (x-x³/3! + x⁵/5! - x⁷/7! + ...)* ");
+		System.out.println("Algoritmo que calcula el seno de un ángulo *Sen x = (x-x^3/3! + x^5/5! - x^7/7! + ...)* ");
 		System.out.println("*********************************************************************************************************");
 		
 		double x = msg.getDoubleFromInput("Ingrese el valor de x (en radianes)");
+        int n = msg.getIntFromInput("Ingrese la cantidad de terminos a utilizar");
+
+        double sin = x;
+        double fact = 1;
+        int sign = -1;
+
+        int cont = 1;
+        for (int i = 3; cont <= n; i += 2)
+        {
+            fact *= (fact-1)*(fact-2);
+            sin += Math.pow(sign, cont) * (Math.pow(x, i)/fact);
+            cont++;
+        }
+
+        System.out.println("El resultaod es: " + sin);
 	}
 }
