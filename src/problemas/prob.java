@@ -57,4 +57,9 @@ public class prob {
         System.out.println("e^" + x + " con " + n + " términos = " + sum);
 	}
 
+    public static void problema3()
+    {
+        Msg msg = Msg.getInstance();
+    }
+
 }
