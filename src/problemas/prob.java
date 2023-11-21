@@ -6,6 +6,10 @@ public class prob {
 	private static Msg msg = Msg.getInstance();
 	
 	public static void problema1(){
+<<<<<<< HEAD
+=======
+		Msg msg = Msg.getInstance();
+>>>>>>> 2e92fec2b44599837043bdc887c961823d01b659
 		
 		System.out.println("Algoritmo que determina qué paquete se puede comprar una persona con el dinero que recibirá en diciembre");
 		System.out.println("*********************************************************************************************************");
@@ -34,9 +38,9 @@ public class prob {
         System.out.println("Productos elegidos:");
         for (String producto : productosElegidos) {
             System.out.println(producto);
-		
-           
         }
+
+        System.out.println("");
     }
 	//****************************************Problema2*****************************************************
 	public static void problema2() {
@@ -46,6 +50,7 @@ public class prob {
 		System.out.println("Algoritmo que realiza la función exponencial eˣ= 1 + x/1! + x²/2! + x³/3! +...");
 		System.out.println("*********************************************************************************************************");
 		
+<<<<<<< HEAD
 		double x = msg.getDoubleFromInput("Ingrese el valor de (x): ");
 	        
 		while (true) {
@@ -68,6 +73,19 @@ public class prob {
 
         System.out.println("Resultado: " + sm);
 		
+=======
+		double x = msg.getDoubleFromInput("Ingrese el valor de x: ");
+		int n = msg.getIntFromInput("Ingrese la cantidad de términos a calcular (n): ");
+
+	        double sum = 1.0, term = 1.0; // (x^0 / 0!)
+
+        for (int i = 1; i <= n; i++) {
+            term *= x / i;
+            sum += term;
+        }
+
+        System.out.println("e^" + x + " con " + n + " términos = " + sum);
+>>>>>>> 2e92fec2b44599837043bdc887c961823d01b659
 	}
 	//****************************************Problema3*****************************************************
 	public static void problema3() {

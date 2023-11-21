@@ -29,7 +29,12 @@ public class Msg {
 	 * @return
 	 */
 	public static Msg getInstance() {
-		return (Msg.instance == null) ? new Msg() : Msg.instance;
+		if (Msg.instance == null) 
+		{
+			Msg.instance = new Msg();
+		}
+
+		return Msg.instance;
 	}
 
 	/**
@@ -89,6 +94,29 @@ public class Msg {
 
 	}
 
+	public void finalHeader()
+	{
+		System.out.println();
+		// Define los caracteres para el guiño
+        String[] winkingFaces = { "O_O","^_^","O_O",};
+
+        // Número de veces que se repetirá la animación
+        int repetitions = 3;
+
+        // Imprime la animación
+        for (int i = 0; i < repetitions; i++) {
+            for (String winkingFace : winkingFaces) {
+                System.out.print(winkingFace + "  Hasta pronto!!!  " + winkingFace); // Imprime el rostro de guiño
+                try {
+                    Thread.sleep(200); // Pausa entre cada rostro
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+				System.out.print("\r");
+            }
+        }
+	}
+
 	/**
 	 * Imprime un mensaje como encabezado
 	 * 
@@ -143,6 +171,8 @@ public class Msg {
 	 * @return
 	 */
 	public Double getDoubleFromInput(String message) {
+
+		
 		System.out.printf("%s%s> ", level, message);
 
 		double cap = scan.nextDouble();
@@ -176,6 +206,7 @@ public class Msg {
 	 * @return
 	 */
 	public String getStringFromInput(String message) {
+		
 		System.out.printf("%s%s> ", level, message);
 
 		String c = scan.next();
@@ -189,8 +220,12 @@ public class Msg {
 	 * @param level : nivel de comando
 	 */
 	public void UpLevel(String level) {
-		this.level += ">" + level;
+		
+		this.level += ">" + level + ">> ";
+		
 		levels.add(level);
+
+	
 	}
 
 	/**
@@ -198,10 +233,6 @@ public class Msg {
 	 */
 	public void DownLevel() {
 
-		levels.remove(levels.size() - 1);
 		level = "cli";
-		for (String lvl : levels) {
-			level += ">" + lvl;
-		}
 	}
 }
