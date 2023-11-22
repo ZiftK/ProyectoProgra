@@ -119,6 +119,12 @@ public class CLI {
 		{
 			probDict.put(key, p1);
 		}
+
+		// asignación de comandos de problema 3
+		for (String key : p3k.split(","))
+		{
+			probDict.put(key, p3);
+		}
 	}
 
 }
