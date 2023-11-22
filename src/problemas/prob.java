@@ -85,7 +85,7 @@ public class prob {
          * 
          *  ---------------------- Cálculo del signo ----------------------
          * 
-         * Es necesario de la sumatoria se vaya alternando, el primero es positivo (x),
+         * Es necesario que el signbo de la sumatoria se vaya alternando, el primero es positivo (x),
          * el segundo negativo (-x^3/3!), el tercero positivo (+ x^5/5!) y así
          * sucesivamente.
          * El signo del primer término ya lo consideramos al iniciar sin = x, por lo que
