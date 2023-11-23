@@ -163,6 +163,7 @@ public class prob {
          *      entonces fact = 120
          * 
          * Así conseguimos calcular el factorial
+         * 
          */
         double sin = x;
         double fact = 1;
