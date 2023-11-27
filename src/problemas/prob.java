@@ -6,10 +6,8 @@ public class prob {
 	private static Msg msg = Msg.getInstance();
 	
 	public static void problema1(){
-<<<<<<< HEAD
-=======
 		Msg msg = Msg.getInstance();
->>>>>>> 2e92fec2b44599837043bdc887c961823d01b659
+
 		
 		System.out.println("Algoritmo que determina qué paquete se puede comprar una persona con el dinero que recibirá en diciembre");
 		System.out.println("*********************************************************************************************************");
@@ -95,4 +93,53 @@ public class prob {
 
         System.out.println("El resultaod es: " + sin);
 	}
+	//****************************************Problema4*****************************************************
+		public static void problema4() {
+			
+		int TamañoArreglo = 0;
+	    boolean validacion = false;
+	        
+		System.out.println("Algoritmo que crea un arreglo del tamaño que el usuario quiera, con las letras del abecedario");
+		System.out.println("*********************************************************************************************************");
+			
+		char[] abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".toCharArray(); //arreglo con las letras del abecedario
+
+	        while (!validacion) { //Se valida que el dato que ingrese el usuario sea mayor a 0
+	            TamañoArreglo = msg.getIntFromInput("Ingrese la cantidad de elementos:");
+	            
+	            if (TamañoArreglo > 0) { //Validación 
+	                validacion = true;
+	            } 
+	            else { //Validación 
+	                System.out.println("La cantidad de números debe ser positiva. Ingrese nuevamente.");
+	            }
+	        }
+	    int[] numeros = new int[TamañoArreglo];
+
+	                   for (int i = 0; i < TamañoArreglo; i++) { //Se solicitan valores de acuerdo al número de elementos solicitados por el usuario
+	                         boolean numeroValido = false;
+   
+	                   while (!numeroValido) {
+	                	     int numero = msg.getIntFromInput("Ingrese el número " + (i + 1) + " (entre 1 y 27):");
+	                        
+
+	                   if (numero >= 1 && numero <= 27) { //Validación 
+	                         numeros[i] = numero;
+	                         numeroValido = true;
+	                   } 
+	                   else { //Validación 
+	                         System.out.println("Número fuera de rango.");
+	                   }
+	                   }
+	        }
+
+	    System.out.println("Las letras del arreglo son:");
+	                             for (int i = 0; i < TamañoArreglo; i++) { //Se muestran los datos Ingresados por el usuario
+	                                    char letra = abecedario[numeros[i] - 1];
+	                                    System.out.println("Número: " + numeros[i] + " Letra: " + letra);
+	                             }
+		}
 }
+		            
+		
+
