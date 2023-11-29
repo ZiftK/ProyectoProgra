@@ -2,31 +2,53 @@ package problemas;
 
 import pio.Msg;
 
+/**
+ * Esta clase contiene los problemas de proyecto propuestos.
+ * Cada problema se encuentra resuelto en un método dado.
+ * 
+ * [29 de noviembre del 2023]
+ * 
+ * @author Ximena Viveros Pérez
+ */
 public class prob {
     private static Msg msg = Msg.getInstance();
 
+    /**
+     * Algoritmo que determina qué paquete se puede comprar
+     * una persona con el dinero que recibirá en diciembre
+     */
     public static void problema1() {
 
+        // Obtenemos instancia global del objeto para mostrar el promt
+        Msg msg = Msg.getInstance();
+
+        // imrpimimos encabezado
         System.out.println(
                 "Algoritmo que determina qué paquete se puede comprar una persona con el dinero que recibirá en diciembre");
         System.out.println(
                 "*********************************************************************************************************");
+
+        // pedimos entrada para monto de aguinaldo
         double aguinaldo = msg.getDoubleFromInput("Ingrese el monto del aguinaldo en diciembre: ");
 
         String paquete;
         String[] productosElegidos = new String[5];
 
         if (aguinaldo >= 50000) {
+
             paquete = "Paquete A";
             productosElegidos = new String[] { "Televisión", "Bocina", "3 pares de zapatos", "5 camisas",
                     "5 pantalones" };
         } else if (aguinaldo >= 20000) {
+
             paquete = "Paquete B";
             productosElegidos = new String[] { "Grabadora", "3 pares de zapatos", "5 camisas", "5 pantalones" };
         } else if (aguinaldo >= 10000) {
+
             paquete = "Paquete C";
             productosElegidos = new String[] { "2 pares de zapatos", "3 camisas", "3 pantalones" };
         } else {
+
             paquete = "Paquete D";
             productosElegidos = new String[] { "1 par de zapatos", "2 camisas", "2 pantalones" };
         }
@@ -35,8 +57,11 @@ public class prob {
         System.out.println("Aguinaldo: $" + aguinaldo);
         System.out.println("Paquete: " + paquete);
         System.out.println("Productos elegidos:");
+
         for (String producto : productosElegidos) {
+
             System.out.println(producto);
+
         }
 
         System.out.println("");
@@ -209,5 +234,53 @@ public class prob {
         }
 
         System.out.println("El resultaod es: " + sin);
+    }
+
+    // ****************************************Problema4*****************************************************
+    public static void problema4() {
+
+        int TamañoArreglo = 0;
+        boolean validacion = false;
+
+        System.out.println(
+                "Algoritmo que crea un arreglo del tamaño que el usuario quiera, con las letras del abecedario");
+        System.out.println(
+                "*********************************************************************************************************");
+
+        char[] abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".toCharArray(); // arreglo con las letras del abecedario
+
+        while (!validacion) { // Se valida que el dato que ingrese el usuario sea mayor a 0
+            TamañoArreglo = msg.getIntFromInput("Ingrese la cantidad de elementos:");
+
+            if (TamañoArreglo > 0) { // Validación
+                validacion = true;
+            } else { // Validación
+                System.out.println("La cantidad de números debe ser positiva. Ingrese nuevamente.");
+            }
+        }
+
+        int[] numeros = new int[TamañoArreglo];
+
+        for (int i = 0; i < TamañoArreglo; i++) { // Se solicitan valores de acuerdo al número de elementos solicitados
+                                                  // por el usuario
+            boolean numeroValido = false;
+
+            while (!numeroValido) {
+                int numero = msg.getIntFromInput("Ingrese el número " + (i + 1) + " (entre 1 y 27):");
+
+                if (numero >= 1 && numero <= 27) { // Validación
+                    numeros[i] = numero;
+                    numeroValido = true;
+                } else { // Validación
+                    System.out.println("Número fuera de rango.");
+                }
+            }
+        }
+
+        System.out.println("Las letras del arreglo son:");
+        for (int i = 0; i < TamañoArreglo; i++) { // Se muestran los datos Ingresados por el usuario
+            char letra = abecedario[numeros[i] - 1];
+            System.out.println("Número: " + numeros[i] + " Letra: " + letra);
+        }
     }
 }

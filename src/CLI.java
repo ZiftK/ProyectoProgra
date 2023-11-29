@@ -96,6 +96,8 @@ public class CLI {
 		Command p3 = new Command(prob::problema3,
 				"Algoritmo que calcula el seno de un ángulo *Sen x = (x-x^3/3! + x^5/5! - x^7/7! + ...)* ![Problema 3]!");
 
+		Command p4 = new Command(prob::problema4,
+				"Algoritmo que crea un arreglo del tamaño que el usuario quiera, con letras del abecedario");
 		// claves para comando de ayuda
 		String hk = "help,?";
 		// claves para comando de salida
@@ -105,6 +107,8 @@ public class CLI {
 
 		// claves para comando de problema 3
 		String p3k = "sin,p3";
+
+		String p4k = "abc,p4";
 
 		// asignación de comandos de ayuda
 		for (String key : hk.split(",")) {
@@ -125,6 +129,12 @@ public class CLI {
 		for (String key : p3k.split(",")) {
 			probDict.put(key, p3);
 		}
-	}
 
+		// asignación de comandos de problema 1
+		for (String key : p4k.split(",")) {
+			probDict.put(key, p4);
+
+		}
+
+	}
 }
