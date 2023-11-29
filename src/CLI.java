@@ -6,6 +6,12 @@ import pio.Msg;
 
 import problemas.prob;
 
+/**
+ * 
+ * [29 de noviembre del 2023]
+ * 
+ * @author ZiftK
+ */
 public class CLI {
 
 	// obtenemos instancia de la clase de mensajería
@@ -32,9 +38,7 @@ public class CLI {
 		do {
 
 			// pedimos entrada
-			input = msg.getStringFromInput("").
-			replaceAll(" ","").
-			toLowerCase();
+			input = msg.getStringFromInput("").replaceAll(" ", "").toLowerCase();
 
 			// ejecutamos
 			execute(input);
@@ -47,12 +51,12 @@ public class CLI {
 
 	public void help() {
 
-		msg.pDownH("\nComandos", '*',2);
+		msg.pDownH("\nComandos", '*', 2);
 
 		for (String name : new TreeSet<>(probDict.keySet())) {
 			System.out.printf(
 					"* **[%s]** %s\n", name, probDict.get(name));
-					
+
 			System.out.println("");
 		}
 	}
@@ -87,12 +91,13 @@ public class CLI {
 		Command cl = new Command(new CLI()::leave, "Termina la ejecucion");
 		// comando de problema 1
 		Command p1 = new Command(prob::problema1, "Ejecuta el algoritmo que determina que paquete se "
-						+String.format("puede comprar una persona con el dinero que recibira en diciembre ![ Problema 1 ]!"));
+				+ String.format("puede comprar una persona con el dinero que recibira en diciembre ![ Problema 1 ]!"));
 
-		Command p3 = new Command(prob::problema3, 
-		"Algoritmo que calcula el seno de un ángulo *Sen x = (x-x^3/3! + x^5/5! - x^7/7! + ...)* ![Problema 3]!");
-		
-		Command p4 = new Command(prob::problema4, "Algoritmo que crea un arreglo del tamaño que el usuario quiera, con letras del abecedario");
+		Command p3 = new Command(prob::problema3,
+				"Algoritmo que calcula el seno de un ángulo *Sen x = (x-x^3/3! + x^5/5! - x^7/7! + ...)* ![Problema 3]!");
+
+		Command p4 = new Command(prob::problema4,
+				"Algoritmo que crea un arreglo del tamaño que el usuario quiera, con letras del abecedario");
 		// claves para comando de ayuda
 		String hk = "help,?";
 		// claves para comando de salida
@@ -102,40 +107,34 @@ public class CLI {
 
 		// claves para comando de problema 3
 		String p3k = "sin,p3";
-		
+
 		String p4k = "abc,p4";
 
 		// asignación de comandos de ayuda
-		for (String key : hk.split(","))
-		{
+		for (String key : hk.split(",")) {
 			probDict.put(key, ch);
 		}
 
 		// asignación de comandos de salida
-		for (String key : lk.split(","))
-		{
+		for (String key : lk.split(",")) {
 			probDict.put(key, cl);
 		}
 
 		// asignación de comandos de problema 1
-		for (String key : p1k.split(","))
-		{
+		for (String key : p1k.split(",")) {
 			probDict.put(key, p1);
 		}
-<<<<<<< HEAD
-		
-		// asignación de comandos de problema 1
-		for (String key : p4k.split(","))
-		{
-			probDict.put(key, p4);
-=======
 
 		// asignación de comandos de problema 3
-		for (String key : p3k.split(","))
-		{
+		for (String key : p3k.split(",")) {
 			probDict.put(key, p3);
->>>>>>> aa18673f5d03312d754a4a0052e1d4d6f8020a8c
 		}
-	}
 
+		// asignación de comandos de problema 1
+		for (String key : p4k.split(",")) {
+			probDict.put(key, p4);
+
+		}
+
+	}
 }
