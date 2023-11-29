@@ -19,7 +19,7 @@ public class prob {
 
         if (aguinaldo >= 50000) {
             paquete = "Paquete A";
-            productosElegidos = new String[]{"Televisión", "Bocina", "3 pares de zapatos", "5 camisas", "5 pantalones"};
+            productosElegidos = new String[]{"Television", "Bocina", "3 pares de zapatos", "5 camisas", "5 pantalones"};
         } else if (aguinaldo >= 20000) {
             paquete = "Paquete B";
             productosElegidos = new String[]{"Grabadora", "3 pares de zapatos", "5 camisas", "5 pantalones"};
@@ -51,13 +51,13 @@ public class prob {
 		
 		double x = msg.getDoubleFromInput("Ingrese el valor de (x): ");
 		while (true) {
-            n = msg.getIntFromInput("Ingrese la cantidad de términos a calcular (n): ");
+            n = msg.getIntFromInput("Ingrese la cantidad de terminos a calcular (n): ");
             
             if (n >= 1) {
                 break; 
             } 
             else {
-                System.out.println("Cantidad de términos '"+n+"' NO VALIDA. Inténtalo de nuevo.");
+                System.out.println("Cantidad de terminos '"+n+"' NO VALIDA. Intentalo de nuevo.");
             }
         }
 
@@ -74,7 +74,7 @@ public class prob {
 	//****************************************Problema3*****************************************************
 	public static void problema3() {
 		
-		System.out.println("Algoritmo que calcula el seno de un ángulo *Sen x = (x-x^3/3! + x^5/5! - x^7/7! + ...)* ");
+		System.out.println("Algoritmo que calcula el seno de un angulo *Sen x = (x-x^3/3! + x^5/5! - x^7/7! + ...)* ");
 		System.out.println("*********************************************************************************************************");
 		
 		double x = msg.getDoubleFromInput("Ingrese el valor de x (en radianes)");
@@ -181,7 +181,7 @@ public class prob {
             cont++;
         }
 
-        System.out.println("El resultaod es: " + sin);
+        System.out.println("El resultado es: " + sin);
 	}
 	//****************************************Problema4*****************************************************
 		public static void problema4() {
@@ -201,7 +201,7 @@ public class prob {
 	                validacion = true;
 	            } 
 	            else { //Validación 
-	                System.out.println("La cantidad de números debe ser positiva. Ingrese nuevamente.");
+	                System.out.println("La cantidad de numeros debe ser positiva. Ingrese nuevamente.");
 	            }
 	        }
 	    int[] numeros = new int[TamañoArreglo];
@@ -210,7 +210,7 @@ public class prob {
 	                         boolean numeroValido = false;
    
 	                   while (!numeroValido) {
-	                	     int numero = msg.getIntFromInput("Ingrese el número " + (i + 1) + " (entre 1 y 27):");
+	                	     int numero = msg.getIntFromInput("Ingrese el numero " + (i + 1) + " (entre 1 y 27):");
 	                        
 
 	                   if (numero >= 1 && numero <= 27) { //Validación 
@@ -218,7 +218,7 @@ public class prob {
 	                         numeroValido = true;
 	                   } 
 	                   else { //Validación 
-	                         System.out.println("Número fuera de rango.");
+	                         System.out.println("Numero fuera de rango.");
 	                   }
 	                   }
 	        }
@@ -226,20 +226,13 @@ public class prob {
 	    System.out.println("Las letras del arreglo son:");
 	                             for (int i = 0; i < TamañoArreglo; i++) { //Se muestran los datos Ingresados por el usuario
 	                                    char letra = abecedario[numeros[i] - 1];
-	                                    System.out.println("Número: " + numeros[i] + " Letra: " + letra);
+	                                    System.out.println("Numero: " + numeros[i] + " Letra: " + letra);
 	                             }
 		}
 		
 		//****************************************Problema5*****************************************************
         
-		static void Problema5(){
-			
-		System.out.println("Algoritmo que crea un arreglo del tamaño que el usuario quiera, con las letras del abecedario");
-		System.out.println("*********************************************************************************************************");
-			
 		
-		
-		}
 		
 }
 		            
