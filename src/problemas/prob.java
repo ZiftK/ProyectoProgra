@@ -234,7 +234,7 @@ public class prob {
 	//****************************************Problema4*****************************************************
 		public static void problema4() {
 			
-		int TamañoArreglo = 0;
+		int tamArreglo = 0;
 	    boolean validacion = false;
 	        
 		System.out.println("Algoritmo que crea un arreglo del tamaño que el usuario quiera, con las letras del abecedario");
@@ -243,18 +243,18 @@ public class prob {
 		char[] abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".toCharArray(); //arreglo con las letras del abecedario
 
 	        while (!validacion) { //Se valida que el dato que ingrese el usuario sea mayor a 0
-	            TamañoArreglo = msg.getIntFromInput("Ingrese la cantidad de elementos:");
+	        	tamArreglo = msg.getIntFromInput("Ingrese la cantidad de elementos:");
 	            
-	            if (TamañoArreglo > 0) { //Validación 
+	            if (tamArreglo > 0) { //Validación 
 	                validacion = true;
 	            } 
 	            else { //Validación 
 	                System.out.println("La cantidad de numeros debe ser positiva. Ingrese nuevamente.");
 	            }
 	        }
-	    int[] numeros = new int[TamañoArreglo];
+	    int[] numeros = new int[tamArreglo];
 
-	                   for (int i = 0; i < TamañoArreglo; i++) { //Se solicitan valores de acuerdo al número de elementos solicitados por el usuario
+	                   for (int i = 0; i < tamArreglo; i++) { //Se solicitan valores de acuerdo al número de elementos solicitados por el usuario
 	                         boolean numeroValido = false;
    
 	                   while (!numeroValido) {
@@ -272,7 +272,7 @@ public class prob {
 	        }
 
 	    System.out.println("Las letras del arreglo son:");
-	                             for (int i = 0; i < TamañoArreglo; i++) { //Se muestran los datos Ingresados por el usuario
+	                             for (int i = 0; i < tamArreglo; i++) { //Se muestran los datos Ingresados por el usuario
 	                                    char letra = abecedario[numeros[i] - 1];
 	                                    System.out.println("Numero: " + numeros[i] + " Letra: " + letra);
 	                             }
