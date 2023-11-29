@@ -6,7 +6,7 @@ public class prob {
 	private static Msg msg = Msg.getInstance();
 	
 	public static void problema1(){
-
+ 
 		Msg msg = Msg.getInstance();
 
 		
@@ -229,6 +229,18 @@ public class prob {
 	                                    System.out.println("Número: " + numeros[i] + " Letra: " + letra);
 	                             }
 		}
+		
+		//****************************************Problema5*****************************************************
+        
+		static void Problema5(){
+			
+		System.out.println("Algoritmo que crea un arreglo del tamaño que el usuario quiera, con las letras del abecedario");
+		System.out.println("*********************************************************************************************************");
+			
+		
+		
+		}
+		
 }
 		            
 		
