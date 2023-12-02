@@ -224,11 +224,7 @@ public class Msg {
 
 		return cap;
 	}
-
-	public void Error(String message) {
-		System.out.println("\n[Error] " + message + "\n\n");
-	}
-
+	
 	/**
 	 * Genera un mensaje por consola y recibe un string para retornarlo
 	 * 
@@ -243,6 +239,15 @@ public class Msg {
 
 		return c;
 	}
+
+	/**
+	 * Imprime mensaje de error
+	 * @param message : mensaje de error
+	 */
+	public void Error(String message) {
+		System.out.println("\n[Error] " + message + "\n\n");
+	}
+
 
 	/**
 	 * Agrega un comando al nivel de comandos
