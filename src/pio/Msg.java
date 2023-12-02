@@ -15,18 +15,20 @@ import java.util.ArrayList;
  */
 public class Msg {
 
-	// scanner para entrada y salida de datos
+	/* scanner para entrada y salida de datos*/ 
 	BufferedReader reader;
-
 	/** Niveles de comandos */
 	private ArrayList<String> levels;
 	/** Variable de impresión para niveles de comandos */
 	private String level = "cli";
 
-	// singleton
+	/*Instancia Singleton */
 	public static Msg instance;
 
 
+	/**
+	 * Objeto Msg
+	 */
 	public Msg()
 	{
 		// valores iniciales
@@ -210,18 +212,7 @@ public class Msg {
 		pDownH(message, charac, 2);
 	}
 
-	/**
-	 * Genera un string usando un carácter una cantidad determinada de veces
-	 * 
-	 * @param charac : carácter a imprimir
-	 * @param count  : cantidad de carácteres
-	 * @return : string con carácter repetido
-	 */
-	String repeatChar(char charac, int count) {
-
-		return new String(new char[count]).replace('\0', charac);
-	}
-
+	
 	/**
 	 * Genera un mensaje por consola y recibe un double para retornarlo
 	 * 
@@ -241,9 +232,9 @@ public class Msg {
 				System.out.printf("%s%s> ", level, message);
 
 				scap = reader.readLine(); // leemos lo introducido en la línea
-
+				
 				cap = Double.parseDouble(scap); // parseamos a double
-
+				
 				// si se obtiene la captura rompemos el ciclo
 				break;
 				
@@ -260,7 +251,7 @@ public class Msg {
 		return cap;
 
 	}
-
+	
 	/**
 	 * Genera un mensaje por consola y recibe un entero para retornarlo
 	 * 
@@ -268,20 +259,20 @@ public class Msg {
 	 * @return
 	 */
 	public int getIntFromInput(String message) {
-
+		
 		int cap; // variable de de retorno
 		String scap; // string de captura
-
+		
 		while (true) {// ciclamos introducción de variable
 			
 			try{
 				// intentamos obtener captura
 				System.out.printf("%s%s> ", level, message);
-
+				
 				scap = reader.readLine(); // leemos entrada
-
+				
 				cap = Integer.parseInt(scap); // parseamos a entero
-
+				
 				// si se obtiene la captura rompemos el ciclo
 				break;
 				
@@ -295,7 +286,7 @@ public class Msg {
 			}
 		}
 		
-
+		
 		return cap;
 	}
 	
@@ -314,19 +305,19 @@ public class Msg {
 			// intentamos obtener captura
 			System.out.printf("%s%s> ", level, message);
 			cap = reader.readLine();
-				
+			
 		}
 		catch (NumberFormatException e){
-				instance.Error("El valor debe ser numérico");
+			instance.Error("El valor debe ser numérico");
 		}
 		catch (IOException e)
 		{
 			instance.Error("Error de entrada : "+ e.getMessage());
 		}
-
+		
 		return cap;
 	}
-
+	
 	/**
 	 * Imprime mensaje de error
 	 * @param message : mensaje de error
@@ -335,7 +326,7 @@ public class Msg {
 		System.out.println("\n[Error] " + message + "\n\n");
 	}
 
-
+	
 	/**
 	 * Agrega un comando al nivel de comandos
 	 * 
@@ -347,14 +338,26 @@ public class Msg {
 		
 		levels.add(level);
 
-	
+		
 	}
-
+	
 	/**
 	 * Remueve el ultimo nivel de comandos
 	 */
 	public void DownLevel() {
 
 		level = "cli";
+	}
+
+	/**
+	 * Genera un string usando un carácter una cantidad determinada de veces
+	 * 
+	 * @param charac : carácter a imprimir
+	 * @param count  : cantidad de carácteres
+	 * @return : string con carácter repetido
+	 */
+	String repeatChar(char charac, int count) {
+	
+		return new String(new char[count]).replace('\0', charac);
 	}
 }

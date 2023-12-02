@@ -6,6 +6,11 @@ import pio.Msg;
  * Esta clase contiene los problemas de proyecto propuestos.
  * Cada problema se encuentra resuelto en un método dado.
  * 
+ * ! ****************** IMPORTANTE ******************
+ *  LA CLASE MSG IMPLEMENTA MANEJO DE EXCEPCIONES EN SUS METODOS DE CAPTURA
+ *  DE DATOS, POR LO QUE SI SE UTILIZA ALGUN METODO DE DICHA CLASE, TAMBIEN SE USA
+ *  UNA SENTENCIA TRY-CATCH
+ * 
  * [29 de noviembre del 2023]
  * 
  * @author Ximena Viveros Pérez
@@ -22,18 +27,40 @@ public class prob {
         // Obtenemos instancia global del objeto para mostrar el promt
         Msg msg = Msg.getInstance();
 
+        double aguinaldo; // variable de captura de aguinaldo
+        String paquete; // indica el paquete que puede comprarse
+        String[] productosElegidos = new String[5]; // almacena los productos de cada paquete
+
+
         // imrpimimos encabezado
         System.out.println(
                 "Algoritmo que determina qué paquete se puede comprar una persona con el dinero que recibirá en diciembre");
         System.out.println(
-                "*********************************************************************************************************");
+                "*********************************************************************************************************\n\n");
 
-        // pedimos entrada para monto de aguinaldo
-        double aguinaldo = msg.getDoubleFromInput("Ingrese el monto del aguinaldo en diciembre: ");
+        
+        while (true) {// ciclamos captura del dato
+            
+            // pedimos entrada para monto de aguinaldo
+            
+            aguinaldo = msg.getDoubleFromInput("Ingrese el monto del aguinaldo en diciembre: ");
 
-        String paquete; // indica el paquete que puede comprarse
-        String[] productosElegidos = new String[5]; // almacena los productos de cada paquete
+            if (aguinaldo > 0) // comprobamos que sea un valor posito
+            {
+                break; // si es un valor positivo, rompemos el ciclo
+            }
+            else
+            {
+                msg.Error("El valor debe ser positivo o mayor a cero. Intentalo de nuevo.");
+            }
+            
+        }
 
+
+        /*
+         * realizamos comparaciones de aguinaldo y asginamos el paquete
+         * disponible con base en el presupuesto
+         */
         if (aguinaldo >= 50000) {
 
             paquete = "Paquete A";
@@ -77,28 +104,29 @@ public class prob {
 	public static void problema2() {
 		
         System.out.println("Algoritmo que realiza la función exponencial eˣ= 1 + x/1! + x²/2! + x³/3! +...");
-		System.out.println("*********************************************************************************************************");
+		System.out.println("*********************************************************************************************************\n\n");
 		
 		int n; // cantidad te terminos
 		double x = msg.getDoubleFromInput("Ingrese el valor de (x): "); // valor a aproximar
+        double sm = 1; // valor aproximado
+        double factorial = 1; // factorial de iteración
 
-		while (true) {
+		while (true) {// comprobamos que la cantidad de terminos sea mayor a cero
             
             n = msg.getIntFromInput("Ingrese la cantidad de terminos a calcular (n): ");
             
-            if (n >= 1) {
+            if (n >= 1) {// si lo es, rompemos el ciclo
                 break; 
             } 
-            else {
-                System.out.println("Cantidad de terminos '"+n+"' NO VALIDA. Intentalo de nuevo.");
+            else {// de lo contrario, imprimimos error
+                msg.Error("Cantidad de terminos '"+n+"' NO VALIDA. Intentalo de nuevo.");
             }
         }
 
-        double sm = 1, factorial = 1;
 
-        for (int i = 1; i <= n; i++) {
-            factorial *= i;
-            sm += Math.pow(x, i) / factorial;
+        for (int i = 1; i <= n; i++) {// iteramos la cantidad de terminos
+            factorial *= i; // calculamos el factorial de la iteracion
+            sm += Math.pow(x, i) / factorial; // sumamos a valor aproximado
         }
 
         System.out.println("Resultado: " + sm);
@@ -107,12 +135,7 @@ public class prob {
 	//****************************************Problema3*****************************************************
 	public static void problema3() {
 		
-		System.out.println("Algoritmo que calcula el seno de un angulo *Sen x = (x-x^3/3! + x^5/5! - x^7/7! + ...)* ");
-		System.out.println("*********************************************************************************************************");
-		
-		double x = msg.getDoubleFromInput("Ingrese el valor de x (en radianes)");
-        int n = msg.getIntFromInput("Ingrese la cantidad de terminos a utilizar");
-
+        
         /*
          * Primero iniciamos sin = x, puesto que el primer término de la sumatoria es x
          * 
@@ -226,16 +249,36 @@ public class prob {
          * Así conseguimos calcular el factorial
          * 
          */
-        double sin = x;
-        double fact = 1;
-        int sign = -1;
+        System.out.println("Algoritmo que calcula el seno de un angulo *Sen x = (x-x^3/3! + x^5/5! - x^7/7! + ...)* ");
+        System.out.println("*********************************************************************************************************\n\n");
+        
+        double x = msg.getDoubleFromInput("Ingrese el valor de x (en radianes)"); // valor a aproximar
+        int n; // cantidad de factores
+        double sin = x; // valor aproximado
+        double fact = 1; // factorial de iteracion
+        int sign = -1; // signo de termino
+        int cont = 1; // contador de terminos
 
-        int cont = 1;
-        for (int i = 3; cont <= n; i += 2) {
-            fact *= (i - 1) * i;
+        while (true) {// ciclamos para asegurarnos que se ingrese un numero
 
-            sin += Math.pow(sign, cont) * (Math.pow(x, i) / fact);
-            cont++;
+            n = msg.getIntFromInput("Ingrese la cantidad de terminos a utilizar");
+
+            if (n <= 0) // si el valor es negativo o igual a cero
+            {// imprimimos error
+                msg.Error("La cantidad de terminos debe ser positiva. Intentalo de nuevo.");
+            }
+            else
+            {
+                // de lo contrario rompemos el ciclo
+                break;
+            }
+        }
+        for (int i = 3; cont <= n; i += 2) { // iteramos desde 3 hasta  la cantidad de terminos
+
+            fact *= (i - 1) * i; // calculamos factorial de i
+
+            sin += Math.pow(sign, cont) * (Math.pow(x, i) / fact); // sumamos a aproximacion
+            cont++; // aumentamos el contador de terminos usados
         }
 
         System.out.println("El resultado es: " + sin);
@@ -243,28 +286,30 @@ public class prob {
 	//****************************************Problema4*****************************************************
 		public static void problema4() {
 			
-            int tamArreglo = 0;
-            boolean validacion = false;
-                
+            
             System.out.println("Algoritmo que crea un arreglo del tamaño que el usuario quiera, con las letras del abecedario");
-            System.out.println("*********************************************************************************************************");
-                
+            System.out.println("*********************************************************************************************************\n\n");
+            
+            int tamArreglo = 0; //
+            boolean validacion = false;
             char[] abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".toCharArray(); //arreglo con las letras del abecedario
-
-                while (!validacion) { //Se valida que el dato que ingrese el usuario sea mayor a 0
-                    tamArreglo = msg.getIntFromInput("Ingrese la cantidad de elementos:");
-                    
-                    if (tamArreglo > 0) { //Validación 
-                        validacion = true;
-                    } 
-                    else { //Validación 
-                        System.out.println("La cantidad de numeros debe ser positiva. Ingrese nuevamente.");
-                    }
-                }
             int[] numeros = new int[tamArreglo];
+            boolean numeroValido;
+
+            while (!validacion) { //Se valida que el dato que ingrese el usuario sea mayor a 0
+                tamArreglo = msg.getIntFromInput("Ingrese la cantidad de elementos:");
+                
+                if (tamArreglo > 0) { //Validación 
+                    validacion = true;
+                } 
+                else { //Validación 
+                    msg.Error("La cantidad de numeros debe ser positiva. Ingrese nuevamente.");
+                }
+            }
 
             for (int i = 0; i < tamArreglo; i++) { //Se solicitan valores de acuerdo al número de elementos solicitados por el usuario
-                    boolean numeroValido = false;
+                
+                numeroValido = false;
 
                 while (!numeroValido) {
                     
