@@ -50,13 +50,13 @@ public class Msg {
 				"|____| |___| |____|        /_/   \\_\\ |_|     |_|    "
 		};
 
-		int delay = 5; // Milisegundos de retardo entre letras
+		int delay = 5; // milisegundos de retardo entre letras
 
-		// Imprime cada letra progresivamente
+		// Imprime cada caracter progresivamente
 		for (String line : lines) {
 			for (int i = 0; i < line.length(); i++) {
 				System.out.print(line.charAt(i));
-				Thread.sleep(delay);
+				Thread.sleep(delay); // tiempo de retardo
 			}
 			Thread.sleep(5); // Retardo adicional entre líneas
 			System.out.println();
@@ -64,30 +64,60 @@ public class Msg {
 
 		System.out.println();
 
-		String name = "Por: Ximena Viveros Perez y Alvaro Caballero Laguna ";
-		int espacios = name.length(); // Espacios a recorrer
-		String arrow = ">-----|>";
-		String aux = "";
+		/*
+		 * Una vez impreso el super encabezado, se imprimirá una animación de flecha.
+		 * La flecha cruzará de izquierda a derecha desacelerando y dejando atrás un 
+		 * texto: "Por: Ximena Viveros Perez y Alvaro Caballero Laguna", por lo que
+		 * el texto debe ir apareciendo detras de la flecha.
+		 * Esto lo lograremos reemplazando cada caracter que deje la fecha detras
+		 * por el caracter correspondiente que ocupe ese espacio.
+		 * Como si el texto ya estuviera escrito y la flecha solo lo estuviese
+		 * revelando.
+		 * 
+		 * Para esto, la flehca debe recorrer justo la distancia que tienen los caracteres
+		 * del texto, por lo que debemos guardamos la cantidad de espacios que recorerá la
+		 * flecha como la longitud del string a imprimir.
+		 * 
+		 * 
+		 */
 
+		String text = "Por: Ximena Viveros Perez y Alvaro Caballero Laguna "; // string a reemplazar
+		int espacios = text.length(); // Espacios a recorrer
+		String arrow = ">-----|>"; // flecha
+		String aux = ""; // variable auxiliar de impresion
+
+		//sp: ----------------- Aparicion progresiva de la flecha ----------------- */
+		/*
+		 * Recorremos el array de la flecha para dibujarla
+		 * progresivamente.
+		 */
 		for (char charac : arrow.toCharArray()) {
-			aux += charac;
-			System.out.print(aux);
-			System.out.print("\r");
+			aux += charac; // añadimos uno a uno al auxiliar
+			System.out.print(aux); // imprimimos auxiliar
+			System.out.print("\r"); // regresamos puntero
 		}
-		aux = "";
-		// Mostrar la flecha
+
+		//sp: ----------------- Aparicion de texto ----------------- */
+
+		aux = ""; // limpiamos auxiliar
+		char[] textArray = text.toCharArray(); // convertimos el texto a un array
+
+		// lanzamos flecha
 		for (int i = 0; i < espacios; i++) {
 
-			aux += name.toCharArray()[i];
+			// agregamos cada caracter al auxiliar de impresion
+			aux += textArray[i];
+			// imptimimos auxiliar de impresion
 			System.out.print(aux);
-
+			
+			// imprimimos flecha
 			System.out.print(arrow);
 			try {
-				Thread.sleep(Math.max(i + 1 - 3, 1)); // Retardo para simular movimiento
+				Thread.sleep(Math.max(i + 1 - 3, 1)); // retardo para simular movimiento
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			System.out.print("\r"); // Regresar al inicio de la línea
+			System.out.print("\r"); // retornamos puntero
 		}
 
 		System.out.println("\n");
