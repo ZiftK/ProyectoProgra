@@ -290,37 +290,36 @@ public class prob {
             System.out.println("Algoritmo que crea un arreglo del tamaño que el usuario quiera, con las letras del abecedario");
             System.out.println("*********************************************************************************************************\n\n");
             
-            int tamArreglo = 0; //
-            boolean validacion = false;
+            int tamArreglo; // tamaño del arreglo
             char[] abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".toCharArray(); //arreglo con las letras del abecedario
-            int[] numeros = new int[tamArreglo];
-            boolean numeroValido;
+            int[] numeros; // arreglo para numeros; 
+            int numero; // captura de numero
 
-            while (!validacion) { //Se valida que el dato que ingrese el usuario sea mayor a 0
+            while (true) { //Se valida que el dato que ingrese el usuario sea mayor a 0
                 tamArreglo = msg.getIntFromInput("Ingrese la cantidad de elementos:");
                 
                 if (tamArreglo > 0) { //Validación 
-                    validacion = true;
+                    break;// rompemos ciclo
                 } 
                 else { //Validación 
                     msg.Error("La cantidad de numeros debe ser positiva. Ingrese nuevamente.");
                 }
             }
 
-            for (int i = 0; i < tamArreglo; i++) { //Se solicitan valores de acuerdo al número de elementos solicitados por el usuario
-                
-                numeroValido = false;
+            numeros = new int[tamArreglo];// establecemos el tamaño del arreglo
 
-                while (!numeroValido) {
+            for (int i = 0; i < tamArreglo; i++) { //Se solicitan valores de acuerdo al número de elementos solicitados por el usuario
+
+                while (true) {// ciclamos para validar numero
                     
-                    int numero = msg.getIntFromInput("Ingrese el numero " + (i + 1) + " (entre 1 y 27):");
+                    numero = msg.getIntFromInput("Ingrese el numero " + (i + 1) + " (entre 1 y 27)");
 
                     if (numero >= 1 && numero <= 27) { //Validación 
-                            numeros[i] = numero;
-                            numeroValido = true;
+                            numeros[i] = numero;// almacenamos numero
+                            break;// rompemos ciclo
                     } 
                     else { //Validación 
-                            System.out.println("Numero fuera de rango.");
+                            msg.Error("Numero fuera de rango.");
                     }
                 }
             }
