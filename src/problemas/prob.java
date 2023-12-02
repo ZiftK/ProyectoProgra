@@ -31,8 +31,8 @@ public class prob {
         // pedimos entrada para monto de aguinaldo
         double aguinaldo = msg.getDoubleFromInput("Ingrese el monto del aguinaldo en diciembre: ");
 
-        String paquete;
-        String[] productosElegidos = new String[5];
+        String paquete; // indica el paquete que puede comprarse
+        String[] productosElegidos = new String[5]; // almacena los productos de cada paquete
 
         if (aguinaldo >= 50000) {
 
@@ -52,11 +52,13 @@ public class prob {
             productosElegidos = new String[] { "1 par de zapatos", "2 camisas", "2 pantalones" };
         }
 
+        // impresión
         System.out.println("Tabla de compra:");
         System.out.println("Aguinaldo: $" + aguinaldo);
         System.out.println("Paquete: " + paquete);
         System.out.println("Productos elegidos:");
 
+        // impresión de productos
         for (String producto : productosElegidos) {
 
             System.out.println(producto);
@@ -65,16 +67,23 @@ public class prob {
 
         System.out.println("");
     }
+
+
 	//****************************************Problema2*****************************************************
+
+    /**
+     * Aproxima la función exponencial usando una serie de Taylor
+     */
 	public static void problema2() {
 		
-		int n;
-		
-		System.out.println("Algoritmo que realiza la función exponencial eˣ= 1 + x/1! + x²/2! + x³/3! +...");
+        System.out.println("Algoritmo que realiza la función exponencial eˣ= 1 + x/1! + x²/2! + x³/3! +...");
 		System.out.println("*********************************************************************************************************");
 		
-		double x = msg.getDoubleFromInput("Ingrese el valor de (x): ");
+		int n; // cantidad te terminos
+		double x = msg.getDoubleFromInput("Ingrese el valor de (x): "); // valor a aproximar
+
 		while (true) {
+            
             n = msg.getIntFromInput("Ingrese la cantidad de terminos a calcular (n): ");
             
             if (n >= 1) {
@@ -234,48 +243,48 @@ public class prob {
 	//****************************************Problema4*****************************************************
 		public static void problema4() {
 			
-		int tamArreglo = 0;
-	    boolean validacion = false;
-	        
-		System.out.println("Algoritmo que crea un arreglo del tamaño que el usuario quiera, con las letras del abecedario");
-		System.out.println("*********************************************************************************************************");
-			
-		char[] abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".toCharArray(); //arreglo con las letras del abecedario
+            int tamArreglo = 0;
+            boolean validacion = false;
+                
+            System.out.println("Algoritmo que crea un arreglo del tamaño que el usuario quiera, con las letras del abecedario");
+            System.out.println("*********************************************************************************************************");
+                
+            char[] abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".toCharArray(); //arreglo con las letras del abecedario
 
-	        while (!validacion) { //Se valida que el dato que ingrese el usuario sea mayor a 0
-	        	tamArreglo = msg.getIntFromInput("Ingrese la cantidad de elementos:");
-	            
-	            if (tamArreglo > 0) { //Validación 
-	                validacion = true;
-	            } 
-	            else { //Validación 
-	                System.out.println("La cantidad de numeros debe ser positiva. Ingrese nuevamente.");
-	            }
-	        }
-	    int[] numeros = new int[tamArreglo];
+                while (!validacion) { //Se valida que el dato que ingrese el usuario sea mayor a 0
+                    tamArreglo = msg.getIntFromInput("Ingrese la cantidad de elementos:");
+                    
+                    if (tamArreglo > 0) { //Validación 
+                        validacion = true;
+                    } 
+                    else { //Validación 
+                        System.out.println("La cantidad de numeros debe ser positiva. Ingrese nuevamente.");
+                    }
+                }
+            int[] numeros = new int[tamArreglo];
 
-	                   for (int i = 0; i < tamArreglo; i++) { //Se solicitan valores de acuerdo al número de elementos solicitados por el usuario
-	                         boolean numeroValido = false;
-   
-	                   while (!numeroValido) {
-	                	     int numero = msg.getIntFromInput("Ingrese el numero " + (i + 1) + " (entre 1 y 27):");
-	                        
+            for (int i = 0; i < tamArreglo; i++) { //Se solicitan valores de acuerdo al número de elementos solicitados por el usuario
+                    boolean numeroValido = false;
 
-	                   if (numero >= 1 && numero <= 27) { //Validación 
-	                         numeros[i] = numero;
-	                         numeroValido = true;
-	                   } 
-	                   else { //Validación 
-	                         System.out.println("Numero fuera de rango.");
-	                   }
-	                   }
-	        }
+                while (!numeroValido) {
+                    
+                    int numero = msg.getIntFromInput("Ingrese el numero " + (i + 1) + " (entre 1 y 27):");
 
-	    System.out.println("Las letras del arreglo son:");
-	                             for (int i = 0; i < tamArreglo; i++) { //Se muestran los datos Ingresados por el usuario
-	                                    char letra = abecedario[numeros[i] - 1];
-	                                    System.out.println("Numero: " + numeros[i] + " Letra: " + letra);
-	                             }
+                    if (numero >= 1 && numero <= 27) { //Validación 
+                            numeros[i] = numero;
+                            numeroValido = true;
+                    } 
+                    else { //Validación 
+                            System.out.println("Numero fuera de rango.");
+                    }
+                }
+            }
+
+            System.out.println("Las letras del arreglo son:");
+                                    for (int i = 0; i < tamArreglo; i++) { //Se muestran los datos Ingresados por el usuario
+                                            char letra = abecedario[numeros[i] - 1];
+                                            System.out.println("Numero: " + numeros[i] + " Letra: " + letra);
+                                    }
 		}
 		
 		//****************************************Problema5*****************************************************

@@ -38,22 +38,38 @@ public class CLI {
 		do {
 
 			// pedimos entrada
-			input = msg.getStringFromInput("").replaceAll(" ", "").toLowerCase();
+			input = msg.getStringFromInput("");
+			// limpiamos entrada
+			input = input.replaceAll(" ", "");
+			// pasamos a minusculas
+			input = input.toLowerCase();
 
-			// ejecutamos
+			// ejecutamos comando
 			execute(input);
 
 		} while (next);
 
+		// imprimimos pie de despedida
 		msg.finalHeader();
 
 	}
 
+	/**
+	 * Imprime todos los comandos almacenados y su descripción
+	 */
 	public void help() {
 
+		// imprimimos encabezado de comandos
 		msg.pDownH("\nComandos", '*', 2);
 
-		for (String name : new TreeSet<>(probDict.keySet())) {
+		// ordenamos alfabéticamente las claves de comando
+		TreeSet<String> sortDict = new TreeSet<>(probDict.keySet());
+
+		for (String name : sortDict ) {
+			/*
+			 * Por cada clave de comando, imprimimos la clave
+			 * y despues la descripcion del comando dandole formato.
+			 */
 			System.out.printf(
 					"* **[%s]** %s\n", name, probDict.get(name));
 
@@ -61,10 +77,18 @@ public class CLI {
 		}
 	}
 
+	/**
+	 * Comando para terminar loop de ejecucion
+	 */
 	public void leave() {
 		next = false;
 	}
 
+	/**
+	 * Ejecuta el comando especificado, de no encontrarse imprime
+	 * un mensaje de error y ayuda.
+	 * @param commandName : nombre del comando
+	 */
 	static void execute(String commandName) {
 		try {
 
@@ -83,7 +107,12 @@ public class CLI {
 
 	}
 
+	/**
+	 * Carga los comandos y sus descripciones
+	 */
 	static void LoadCommands() {
+
+		//* ---------- Inicialización de comandos ---------- */
 
 		// comando de ayuda
 		Command ch = new Command(new CLI()::help, "Imprime los comandos y su descripcion");
@@ -98,6 +127,9 @@ public class CLI {
 
 		Command p4 = new Command(prob::problema4,
 				"Algoritmo que crea un arreglo del tamaño que el usuario quiera, con letras del abecedario");
+		
+		//* ---------- Claves de comandos ----------
+
 		// claves para comando de ayuda
 		String hk = "help,?";
 		// claves para comando de salida
@@ -110,6 +142,8 @@ public class CLI {
 
 		String p4k = "abc,p4";
 
+		//* ---------- Almacenamiento de comandos ---------- */
+		
 		// asignación de comandos de ayuda
 		for (String key : hk.split(",")) {
 			probDict.put(key, ch);
