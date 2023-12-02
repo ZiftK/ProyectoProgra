@@ -1,7 +1,12 @@
 package pio;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 /**
  * Esta clase está diseñada para agilizar la entrada y salida
@@ -13,16 +18,24 @@ import java.util.ArrayList;
 public class Msg {
 
 	// scanner para entrada y salida de datos
-	private Scanner scan = new Scanner(System.in);
+	BufferedReader reader;
 
 	/** Niveles de comandos */
-	private ArrayList<String> levels = new ArrayList<>();
+	private ArrayList<String> levels;
 	/** Variable de impresión para niveles de comandos */
 	private String level = "cli";
 
 	// singleton
 	public static Msg instance;
 
+
+	public Msg()
+	{
+		// valores iniciales
+		reader = new BufferedReader(new InputStreamReader(System.in));
+		levels = new ArrayList<>();
+	}
+	
 	/**
 	 * Método para obtener la instancia de Msg
 	 * 
@@ -35,6 +48,20 @@ public class Msg {
 		}
 
 		return Msg.instance;
+	}
+
+	/**
+	 * Limpieza de variables
+	 */
+	public void kill()
+	{
+		try{
+			// cerramos el lector
+			reader.close();
+		}
+		catch(IOException e){
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**
@@ -145,6 +172,8 @@ public class Msg {
 				System.out.print("\r");
             }
         }
+
+		System.out.println();
 	}
 
 	/**
@@ -176,6 +205,7 @@ public class Msg {
 		str1 += repeatChar(charac, offset);
 
 		System.out.printf("%s\n%s\n\n", message, str1);
+
 	}
 
 	public void pDownH(String message, char charac) {
@@ -203,9 +233,31 @@ public class Msg {
 	public Double getDoubleFromInput(String message) {
 
 		
-		System.out.printf("%s%s> ", level, message);
+		double cap; // variable de de retorno
+		String scap; // string de captura
 
-		double cap = scan.nextDouble();
+		while (true) {// ciclamos introducción de variable
+			
+			try{
+				// intentamos obtener captura
+				System.out.printf("%s%s> ", level, message);
+
+				scap = reader.readLine(); // leemos lo introducido en la línea
+
+				cap = Double.parseDouble(scap); // parseamos a double
+
+				// si se obtiene la captura rompemos el ciclo
+				break;
+				
+			}
+			catch (NumberFormatException e){
+				instance.Error("El valor debe ser numérico");
+			}
+			catch (IOException e)
+			{
+				instance.Error("Error de entrada : "+ e.getMessage());
+			}
+		}
 
 		return cap;
 
@@ -218,9 +270,33 @@ public class Msg {
 	 * @return
 	 */
 	public int getIntFromInput(String message) {
-		System.out.printf("%s%s> ", level, message);
 
-		int cap = scan.nextInt();
+		int cap; // variable de de retorno
+		String scap; // string de captura
+
+		while (true) {// ciclamos introducción de variable
+			
+			try{
+				// intentamos obtener captura
+				System.out.printf("%s%s> ", level, message);
+
+				scap = reader.readLine(); // leemos entrada
+
+				cap = Integer.parseInt(scap); // parseamos a entero
+
+				// si se obtiene la captura rompemos el ciclo
+				break;
+				
+			}
+			catch (NumberFormatException e){
+				instance.Error("El valor debe ser numérico");
+			}
+			catch (IOException e)
+			{
+				instance.Error("Error de entrada : "+ e.getMessage());
+			}
+		}
+		
 
 		return cap;
 	}
@@ -233,11 +309,24 @@ public class Msg {
 	 */
 	public String getStringFromInput(String message) {
 		
-		System.out.printf("%s%s> ", level, message);
+		
+		String cap = ""; // string de retorno
+		
+		try{
+			// intentamos obtener captura
+			System.out.printf("%s%s> ", level, message);
+			cap = reader.readLine();
+				
+		}
+		catch (NumberFormatException e){
+				instance.Error("El valor debe ser numérico");
+		}
+		catch (IOException e)
+		{
+			instance.Error("Error de entrada : "+ e.getMessage());
+		}
 
-		String c = scan.next();
-
-		return c;
+		return cap;
 	}
 
 	/**

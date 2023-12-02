@@ -47,10 +47,28 @@ public class CLI {
 			// ejecutamos comando
 			execute(input);
 
+			// try
+			// {
+			// 	input = msg.getStringFromInput("prueba");
+			// 	if (input.equals("q"))
+			// 	{
+			// 		break;
+			// 	}
+			// 	else
+			// 	{
+			// 		throw new IllegalArgumentException();
+			// 	}
+			// }
+			// catch (IllegalArgumentException e)
+			// {
+			// 	msg.Error("NOOOOOOOOOOO");
+			// }
+
 		} while (next);
 
 		// imprimimos pie de despedida
 		msg.finalHeader();
+		msg.kill();
 
 	}
 
