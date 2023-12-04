@@ -393,7 +393,7 @@ public class prob {
             System.out.println();
             }
 		}
-		//****************************************Problema5*****************************************************
+		//****************************************Problema6*****************************************************
         
 				
 		public static void problema6() {
@@ -427,5 +427,46 @@ public class prob {
 	            System.out.print(elemento + " ");
 	        }
 		}
+		//****************************************Problema7*****************************************************
+        
 		
+				public static void problema7() {
+					int n = 0;
+					
+			        while (n <= 0) {
+			        	String input = msg.getStringFromInput("Ingrese la cantidad de elementos del arreglo (debe ser un numero positivo): ");
+			     
+			                try {
+			                    n = Integer.parseInt(input);
+			                    if (n <= 0) {
+			                    	System.out.println("Error, ingrese un numero positivo.");
+			                    }
+			                } catch (NumberFormatException e) {
+			                	System.out.println("Ingrese un numero valido.");
+			                }
+			            }
+
+			            // Crear un arreglo n
+			            int[] arreglo = new int[n];
+
+			            // Leer los elementos del usuario
+			            System.out.println("Ingrese los elementos del arreglo:");
+			            for (int i = 0; i < n; i++) {
+			                String inputElemento = msg.getStringFromInput("Elemento " + (i + 1) + ": ");
+			                
+			                try {
+			                    arreglo[i] = Integer.parseInt(inputElemento);
+			                } catch (NumberFormatException e) {
+			                   System.out.println("Ingrese un numero valido.");
+			                    i--; // Decrementar el indice para que se pida el mismo elemento nuevamente
+			                }
+			            }
+
+			        // Imprimir el arreglo en orden inverso
+			        System.out.println("Arreglo en orden inverso:");
+			        for (int i = n - 1; i >= 0; i--) {
+			            System.out.print(arreglo[i] + " ");
+			        }
+				
+				}
 }
