@@ -7,6 +7,9 @@ import pio.Msg;
 import problemas.prob;
 
 /**
+ * Esta clase contiene la ejecución principal del cli.
+ * A través de ella, el usuario puede ingresar los comandos
+ * necesarios para ejecutar procedimientos programados.
  * 
  * [29 de noviembre del 2023]
  * 
@@ -17,8 +20,10 @@ public class CLI {
 	// obtenemos instancia de la clase de mensajería
 	static Msg msg = Msg.getInstance();
 
+	/**Almacena los comandos */
 	static HashMap<String, Command> probDict = new HashMap<>();
 
+	/**Mantiene el loop del cli */
 	static boolean next;
 
 	public static void main(String[] args) throws InterruptedException {
@@ -46,23 +51,6 @@ public class CLI {
 
 			// ejecutamos comando
 			execute(input);
-
-			// try
-			// {
-			// 	input = msg.getStringFromInput("prueba");
-			// 	if (input.equals("q"))
-			// 	{
-			// 		break;
-			// 	}
-			// 	else
-			// 	{
-			// 		throw new IllegalArgumentException();
-			// 	}
-			// }
-			// catch (IllegalArgumentException e)
-			// {
-			// 	msg.Error("NOOOOOOOOOOO");
-			// }
 
 		} while (next);
 
@@ -103,8 +91,8 @@ public class CLI {
 	}
 
 	/**
-	 * Ejecuta el comando especificado, de no encontrarse imprime
-	 * un mensaje de error y ayuda.
+	 * Ejecuta el comando especificado, de no encontrarse ejecuta
+	 * un comando de error y ayuda.
 	 * @param commandName : nombre del comando
 	 */
 	static void execute(String commandName) {
@@ -140,6 +128,10 @@ public class CLI {
 		Command p1 = new Command(prob::problema1, "Ejecuta el algoritmo que determina que paquete se "
 				+ String.format("puede comprar una persona con el dinero que recibira en diciembre ![ Problema 1 ]!"));
 
+		// comando de problema 2
+		Command p2 = new Command(prob::problema2,
+				"Algoritmo que realiza la función exponencial eˣ= 1 + x/1! + x²/2! + x³/3! +...");
+
 		Command p3 = new Command(prob::problema3,
 				"Algoritmo que calcula el seno de un ángulo *Sen x = (x-x^3/3! + x^5/5! - x^7/7! + ...)* ![Problema 3]!");
 
@@ -162,17 +154,19 @@ public class CLI {
 		String lk = "leave,quit,q,exit";
 		// claves para comando de problema 1
 		String p1k = "compag,p1";
-
+		// claves para comando de problema 2
+		String p2k = "exp,p2";
 		// claves para comando de problema 3
 		String p3k = "sin,p3";
-
+		// claves para comnado de problema 4
 		String p4k = "abc,p4";
-		
-		String p5k = "num***,p5";
-		
+		// claves para comando de problema 5
+		String p5k = "num,p5";
+		// claves para comando de problema 6
 		String p6k = "pos,p6";
-		
+		// claves para comando de problema 7
 		String p7k = "inv,p7";
+
 		//* ---------- Almacenamiento de comandos ---------- */
 		
 		// asignación de comandos de ayuda
@@ -190,6 +184,11 @@ public class CLI {
 			probDict.put(key, p1);
 		}
 
+		// asignación de comandos de problema 2
+		for (String key : p2k.split(",")) {
+			probDict.put(key, p2);
+		}
+
 		// asignación de comandos de problema 3
 		for (String key : p3k.split(",")) {
 			probDict.put(key, p3);
@@ -198,13 +197,11 @@ public class CLI {
 		// asignación de comandos de problema 1
 		for (String key : p4k.split(",")) {
 			probDict.put(key, p4);
-
 		}
 		
 		// asignación de comandos de problema 5
 		for (String key : p5k.split(",")) {
 			probDict.put(key, p5);
-
 		}
 		// asignación de comandos de problema 6
 		for (String key : p6k.split(",")) {

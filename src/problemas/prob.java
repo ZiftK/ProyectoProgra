@@ -249,6 +249,7 @@ public class prob {
          * Así conseguimos calcular el factorial
          * 
          */
+
         System.out.println("Algoritmo que calcula el seno de un angulo *Sen x = (x-x^3/3! + x^5/5! - x^7/7! + ...)* ");
         System.out.println("*********************************************************************************************************\n\n");
         
@@ -284,189 +285,190 @@ public class prob {
         System.out.println("El resultado es: " + sin);
 	}
 	//****************************************Problema4*****************************************************
-		public static void problema4() {
-			
-            
-            System.out.println("Algoritmo que crea un arreglo del tamaño que el usuario quiera, con las letras del abecedario");
-            System.out.println("*********************************************************************************************************\n\n");
-            
-            int tamArreglo; // tamaño del arreglo
-            char[] abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".toCharArray(); //arreglo con las letras del abecedario
-            int[] numeros; // arreglo para numeros; 
-            int numero; // captura de numero
+    public static void problema4() {
+        
+        
+        System.out.println("Algoritmo que crea un arreglo del tamaño que el usuario quiera, con las letras del abecedario");
+        System.out.println("*********************************************************************************************************\n\n");
+        
+        int tamArreglo; // tamaño del arreglo
+        char[] abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".toCharArray(); //arreglo con las letras del abecedario
+        int[] numeros; // arreglo para numeros; 
+        int numero; // captura de numero
 
-            while (true) { //Se valida que el dato que ingrese el usuario sea mayor a 0
-                tamArreglo = msg.getIntFromInput("Ingrese la cantidad de elementos:");
+        while (true) { //Se valida que el dato que ingrese el usuario sea mayor a 0
+            tamArreglo = msg.getIntFromInput("Ingrese la cantidad de elementos:");
+            
+            if (tamArreglo > 0) { //Validación 
+                break;// rompemos ciclo
+            } 
+            else { //Validación 
+                msg.Error("La cantidad de numeros debe ser positiva. Ingrese nuevamente.");
+            }
+        }
+
+        numeros = new int[tamArreglo];// establecemos el tamaño del arreglo
+
+        for (int i = 0; i < tamArreglo; i++) { //Se solicitan valores de acuerdo al número de elementos solicitados por el usuario
+
+            while (true) {// ciclamos para validar numero
                 
-                if (tamArreglo > 0) { //Validación 
-                    break;// rompemos ciclo
+                numero = msg.getIntFromInput("Ingrese el numero " + (i + 1) + " (entre 1 y 27)");
+
+                if (numero >= 1 && numero <= 27) { //Validación 
+                        numeros[i] = numero;// almacenamos numero
+                        break;// rompemos ciclo
                 } 
                 else { //Validación 
-                    msg.Error("La cantidad de numeros debe ser positiva. Ingrese nuevamente.");
+                        msg.Error("Numero fuera de rango.");
                 }
             }
+        }
 
-            numeros = new int[tamArreglo];// establecemos el tamaño del arreglo
-
-            for (int i = 0; i < tamArreglo; i++) { //Se solicitan valores de acuerdo al número de elementos solicitados por el usuario
-
-                while (true) {// ciclamos para validar numero
-                    
-                    numero = msg.getIntFromInput("Ingrese el numero " + (i + 1) + " (entre 1 y 27)");
-
-                    if (numero >= 1 && numero <= 27) { //Validación 
-                            numeros[i] = numero;// almacenamos numero
-                            break;// rompemos ciclo
-                    } 
-                    else { //Validación 
-                            msg.Error("Numero fuera de rango.");
-                    }
-                }
-            }
-
-            System.out.println("Las letras del arreglo son:");
-                                    for (int i = 0; i < tamArreglo; i++) { //Se muestran los datos Ingresados por el usuario
-                                            char letra = abecedario[numeros[i] - 1];
-                                            System.out.println("Numero: " + numeros[i] + " Letra: " + letra);
-                                    }
-		}
-		
-		//****************************************Problema5*****************************************************
+        System.out.println("Las letras del arreglo son:");
+                                for (int i = 0; i < tamArreglo; i++) { //Se muestran los datos Ingresados por el usuario
+                                        char letra = abecedario[numeros[i] - 1];
+                                        System.out.println("Numero: " + numeros[i] + " Letra: " + letra);
+                                }
+    }
+    
+    //****************************************Problema5*****************************************************
         
-		public static void problema5() {
-			int n;
-			System.out.println("Algoritmo que muestra el histograma de un arreglo de n elementos con n asteriscos donde n es el valor de cada elemento del arreglo");
-            System.out.println("*********************************************************************************************************\n\n");
-            
-            // Pedir al usuario el tamaño del arreglo
-            n = msg.getIntFromInput("Ingrese la cantidad de elementos del arreglo: ");
-           
+    public static void problema5() {
+        int n;
+        System.out.println("Algoritmo que muestra el histograma de un arreglo de n elementos con n asteriscos donde n es el valor de cada elemento del arreglo");
+        System.out.println("*********************************************************************************************************\n\n");
+        
+        // Pedir al usuario el tamaño del arreglo
+        n = msg.getIntFromInput("Ingrese la cantidad de elementos del arreglo: ");
+        
 
-            // Validar que se ingrese un entero no negativo
-            while (true) { //Se utiliza ciclo while para solicitar datos al usuario hasta que sean de valor correcto
-                try {
-                    n = Integer.parseInt(msg.getStringFromInput("Ingrese la cantidad de elementos del arreglo (entero positivo): ")); 
-                    if (n > 0) {
-                        break;
-                    } else {
-                        System.out.println("Ingrese un entero valido.");
-                    }
-                } catch (NumberFormatException e) {
+        // Validar que se ingrese un entero no negativo
+        while (true) { //Se utiliza ciclo while para solicitar datos al usuario hasta que sean de valor correcto
+            try {
+                n = Integer.parseInt(msg.getStringFromInput("Ingrese la cantidad de elementos del arreglo (entero positivo): ")); 
+                if (n > 0) {
+                    break;
+                } else {
                     System.out.println("Ingrese un entero valido.");
                 }
+            } catch (NumberFormatException e) {
+                System.out.println("Ingrese un entero valido.");
             }
+        }
 
-            // Crear el arreglo
-            int[] arreglo = new int[n];
+        // Crear el arreglo
+        int[] arreglo = new int[n];
 
-            // Pedir al usuario los elementos del arreglo
-                       for (int i = 0; i < n; i++) {
-                            System.out.print("Ingrese el valor del elemento " + (i + 1) + ": ");
-                            int elemento = 0;
+        // Pedir al usuario los elementos del arreglo
+                    for (int i = 0; i < n; i++) {
+                        System.out.print("Ingrese el valor del elemento " + (i + 1) + ": ");
+                        int elemento = 0;
 
-                // Validar que se ingrese un entero no negativo
-                       while (true) {
-                              try {
-                    	//se convierten los valores ingresados a enteros para poder guardar cada dato del arreglo
-                               elemento = Integer.parseInt(msg.getStringFromInput("Ingrese el valor del elemento " + (i + 1) + ": "));
-                          if (elemento >= 0) {
-                              break;
-                          } else {
-                               System.out.println("Ingrese un elemento valido.");
-                          }
-                          } 
-                            catch (NumberFormatException e) {
-                    	       System.out.println("Ingrese un elemento valido.");
-                          }
-                       }
+            // Validar que se ingrese un entero no negativo
+                    while (true) {
+                            try {
+                    //se convierten los valores ingresados a enteros para poder guardar cada dato del arreglo
+                            elemento = Integer.parseInt(msg.getStringFromInput("Ingrese el valor del elemento " + (i + 1) + ": "));
+                        if (elemento >= 0) {
+                            break;
+                        } else {
+                            System.out.println("Ingrese un elemento valido.");
+                        }
+                        } 
+                        catch (NumberFormatException e) {
+                            System.out.println("Ingrese un elemento valido.");
+                        }
+                    }
 
-                arreglo[i] = elemento;
-            }
+            arreglo[i] = elemento;
+        }
 
-            // Mostrar el histograma 
-            System.out.println("Histograma:");
-                                    for (int i = 0; i < n; i++) { //se utiliza un ciclo for para imprimir el arreglo con los valores que usuario proporciono 
-                                       System.out.print(arreglo[i] + "->");
-                                    for (int j = 0; j < arreglo[i]; j++) { //se utiliza el for para imprimir los '*' dependiendo a los valores que el usuario dio 
-                                       System.out.print("*");
-                                    }
-            System.out.println();
-            }
-		}
-		//****************************************Problema6*****************************************************
+        // Mostrar el histograma 
+        System.out.println("Histograma:");
+                                for (int i = 0; i < n; i++) { //se utiliza un ciclo for para imprimir el arreglo con los valores que usuario proporciono 
+                                    System.out.print(arreglo[i] + "->");
+                                for (int j = 0; j < arreglo[i]; j++) { //se utiliza el for para imprimir los '*' dependiendo a los valores que el usuario dio 
+                                    System.out.print("*");
+                                }
+        System.out.println();
+        }
+    }
+
+    //****************************************Problema6*****************************************************
         
 				
-		public static void problema6() {
-			
-			System.out.println("Algoritmo que solicita valores para un vector de 8 elementos y va cambiando sus posiciones \nel primer elemento con el ultimo, el segundo con el penutimo y asi sucesivamente");
-            System.out.println("*********************************************************************************************************\n\n");
+    public static void problema6() {
+        
+        System.out.println("Algoritmo que solicita valores para un vector de 8 elementos y va cambiando sus posiciones \nel primer elemento con el ultimo, el segundo con el penutimo y asi sucesivamente");
+        System.out.println("*********************************************************************************************************\n\n");
+        
+        //se crea vector con 8 elementos
+        int[] vector = new int[8];
+
+        System.out.println("Ingrese los 8 elementos del vector:");
+        for (int i = 0; i < 8; i++) { //Se solicitan los valores mediante un for para no solicitar elemento a elemento
+            vector[i]=msg.getIntFromInput("Elemento " + (i + 1) + ": ");
             
-            //se crea vector con 8 elementos
-	        int[] vector = new int[8];
+        }
 
-	        System.out.println("Ingrese los 8 elementos del vector:");
-	        for (int i = 0; i < 8; i++) { //Se solicitan los valores mediante un for para no solicitar elemento a elemento
-	        	vector[i]=msg.getIntFromInput("Elemento " + (i + 1) + ": ");
-	            
-	        }
+        // Intercambiar las posiciones de los elementos
+        for (int i = 0; i < vector.length / 2; i++) { 
+            
+            // Se guarda temporalmente el valor del elemento actual
+            int temp = vector[i];
+            // Asignar el valor del elemento opuesto al elemento actual
+            vector[i] = vector[vector.length - 1 - i];
+            // Asignar el valor temporal al elemento opuesto
+            vector[vector.length - 1 - i] = temp;
+        }
 
-	        // Intercambiar las posiciones de los elementos
-	        for (int i = 0; i < vector.length / 2; i++) { 
-	        	
-	         // Se guarda temporalmente el valor del elemento actual
-	            int temp = vector[i];
-	         // Asignar el valor del elemento opuesto al elemento actual
-	            vector[i] = vector[vector.length - 1 - i];
-	         // Asignar el valor temporal al elemento opuesto
-	            vector[vector.length - 1 - i] = temp;
-	        }
-
-	        // Imprimir el vector después del intercambio
-	        System.out.println("Vector despues del intercambio:");
-	        for (int elemento : vector) {
-	            System.out.print(elemento + " ");
-	        }
-		}
+        // Imprimir el vector después del intercambio
+        System.out.println("Vector despues del intercambio:");
+        for (int elemento : vector) {
+            System.out.print(elemento + " ");
+        }
+    }
 		//****************************************Problema7*****************************************************
         
 		
-				public static void problema7() {
-					int n = 0;
-					
-			        while (n <= 0) {
-			        	String input = msg.getStringFromInput("Ingrese la cantidad de elementos del arreglo (debe ser un numero positivo): ");
-			     
-			                try {
-			                    n = Integer.parseInt(input);
-			                    if (n <= 0) {
-			                    	System.out.println("Error, ingrese un numero positivo.");
-			                    }
-			                } catch (NumberFormatException e) {
-			                	System.out.println("Ingrese un numero valido.");
-			                }
-			            }
+    public static void problema7() {
+        int n = 0;
+        
+        while (n <= 0) {
+            String input = msg.getStringFromInput("Ingrese la cantidad de elementos del arreglo (debe ser un numero positivo): ");
+        
+                try {
+                    n = Integer.parseInt(input);
+                    if (n <= 0) {
+                        System.out.println("Error, ingrese un numero positivo.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Ingrese un numero valido.");
+                }
+            }
 
-			            // Crear un arreglo n
-			            int[] arreglo = new int[n];
+            // Crear un arreglo n
+            int[] arreglo = new int[n];
 
-			            // Leer los elementos del usuario
-			            System.out.println("Ingrese los elementos del arreglo:");
-			            for (int i = 0; i < n; i++) {
-			                String inputElemento = msg.getStringFromInput("Elemento " + (i + 1) + ": ");
-			                
-			                try {
-			                    arreglo[i] = Integer.parseInt(inputElemento);
-			                } catch (NumberFormatException e) {
-			                   System.out.println("Ingrese un numero valido.");
-			                    i--; // Decrementar el indice para que se pida el mismo elemento nuevamente
-			                }
-			            }
+            // Leer los elementos del usuario
+            System.out.println("Ingrese los elementos del arreglo:");
+            for (int i = 0; i < n; i++) {
+                String inputElemento = msg.getStringFromInput("Elemento " + (i + 1) + ": ");
+                
+                try {
+                    arreglo[i] = Integer.parseInt(inputElemento);
+                } catch (NumberFormatException e) {
+                    System.out.println("Ingrese un numero valido.");
+                    i--; // Decrementar el indice para que se pida el mismo elemento nuevamente
+                }
+            }
 
-			        // Imprimir el arreglo en orden inverso
-			        System.out.println("Arreglo en orden inverso:");
-			        for (int i = n - 1; i >= 0; i--) {
-			            System.out.print(arreglo[i] + " ");
-			        }
-				
-				}
+        // Imprimir el arreglo en orden inverso
+        System.out.println("Arreglo en orden inverso:");
+        for (int i = n - 1; i >= 0; i--) {
+            System.out.print(arreglo[i] + " ");
+        }
+    
+    }
 }
