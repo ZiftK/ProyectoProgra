@@ -333,6 +333,64 @@ public class prob {
 		
 		//****************************************Problema5*****************************************************
         
-		
+		public static void problema5() {
+			int n;
+			System.out.println("Algoritmo que muestra el histograma de un arreglo de n elementos con n asteriscos donde n es el valor de cada elemento del arreglo");
+            System.out.println("*********************************************************************************************************\n\n");
+            
+            // Pedir al usuario el tamaño del arreglo
+            n = msg.getIntFromInput("Ingrese la cantidad de elementos del arreglo: ");
+           
+
+            // Validar que se ingrese un entero no negativo
+            while (true) { //Se utiliza ciclo while para solicitar datos al usuario hasta que sean de valor correcto
+                try {
+                    n = Integer.parseInt(msg.getStringFromInput("Ingrese la cantidad de elementos del arreglo: ")); 
+                    if (n >= 0) {
+                        break;
+                    } else {
+                        System.out.println("Ingrese un entero no negativo válido.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Ingrese un entero no negativo válido.");
+                }
+            }
+
+            // Crear el arreglo
+            int[] arreglo = new int[n];
+
+            // Pedir al usuario los elementos del arreglo
+            for (int i = 0; i < n; i++) {
+                System.out.print("Ingrese el valor del elemento " + (i + 1) + ": ");
+                int elemento = 0;
+
+                // Validar que se ingrese un entero no negativo
+                while (true) {
+                    try {
+                    	//se convierten los valores ingresados a enteros para poder guardar cada dato del arreglo
+                        elemento = Integer.parseInt(msg.getStringFromInput("Ingrese el valor del elemento " + (i + 1) + ": "));
+                        if (elemento >= 0) {
+                            break;
+                        } else {
+                            System.out.println("Ingrese un entero no negativo válido.");
+                        }
+                    } catch (NumberFormatException e) {
+                    	System.out.println("Ingrese un entero no negativo válido.");
+                    }
+                }
+
+                arreglo[i] = elemento;
+            }
+
+            // Mostrar el histograma 
+            System.out.println("Histograma:");
+            for (int i = 0; i < n; i++) { //se utiliza un ciclo for para imprimir el arreglo con los valores que usuario proporciono 
+                System.out.print(arreglo[i] + "->");
+                for (int j = 0; j < arreglo[i]; j++) { //se utiliza el for para imprimir los '*' dependiendo a los valores que el usuario dio 
+                    System.out.print("*");
+                }
+                System.out.println();
+            }
+		}
 		
 }
